@@ -8,7 +8,7 @@
 		private $id_endereco;
  		private $cep;
  		private $endereco;
- 		private $ponto de referencia;
+ 		private $ponto_de_referencia;
  		private $numero;
  		private $complemento;
  		private $bairro;
