@@ -28,8 +28,8 @@
 		public function getEndereco(){
 			return $this->endereco;
 		}
-		public function getPonto de referencia(){
-			return $this->ponto de referencia;
+		public function getPonto_de_referencia(){
+			return $this->ponto_de_referencia;
 		}
 		public function getNumero(){
 			return $this->numero;

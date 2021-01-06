@@ -48,12 +48,12 @@ class LogradouroDAO{
 	//Insere um elemento na tabela
 	public function inserir($logradouro){
 		include("conexao.php");
-		$sql = 'INSERT INTO logradouro (id_endereco, cep, endereco, ponto de referencia, numero, complemento, bairro, cidade, estado, data_cadastro, data_alteracao, id_usuario) VALUES (:id_endereco, :cep, :endereco, :ponto de referencia, :numero, :complemento, :bairro, :cidade, :estado, :data_cadastro, :data_alteracao, :id_usuario)';
+		$sql = 'INSERT INTO logradouro (id_endereco, cep, endereco, ponto_de_referencia, numero, complemento, bairro, cidade, estado, data_cadastro, data_alteracao, id_usuario) VALUES (:id_endereco, :cep, :endereco, :ponto_de_referencia, :numero, :complemento, :bairro, :cidade, :estado, :data_cadastro, :data_alteracao, :id_usuario)';
 		$consulta = $conexao->prepare($sql);
 		$consulta->bindValue(':id_endereco',$logradouro->getId_endereco()); 
 		$consulta->bindValue(':cep',$logradouro->getCep()); 
 		$consulta->bindValue(':endereco',$logradouro->getEndereco()); 
-		$consulta->bindValue(':ponto de referencia',$logradouro->getPonto de referencia()); 
+		$consulta->bindValue(':ponto_de_referencia',$logradouro->getPonto_de_referencia()); 
 		$consulta->bindValue(':numero',$logradouro->getNumero()); 
 		$consulta->bindValue(':complemento',$logradouro->getComplemento()); 
 		$consulta->bindValue(':bairro',$logradouro->getBairro()); 
@@ -71,12 +71,12 @@ class LogradouroDAO{
 	//Atualiza um elemento na tabela
 	public function atualizar($logradouro){
 		include("conexao.php");
-		$sql = 'UPDATE logradouro SET id_endereco = :id_endereco, cep = :cep, endereco = :endereco, ponto de referencia = :ponto de referencia, numero = :numero, complemento = :complemento, bairro = :bairro, cidade = :cidade, estado = :estado, data_cadastro = :data_cadastro, data_alteracao = :data_alteracao, id_usuario = :id_usuario WHERE id_endereco = :id_endereco';
+		$sql = 'UPDATE logradouro SET id_endereco = :id_endereco, cep = :cep, endereco = :endereco, ponto_de_referencia = :ponto_de_referencia, numero = :numero, complemento = :complemento, bairro = :bairro, cidade = :cidade, estado = :estado, data_cadastro = :data_cadastro, data_alteracao = :data_alteracao, id_usuario = :id_usuario WHERE id_endereco = :id_endereco';
 		$consulta = $conexao->prepare($sql);
 		$consulta->bindValue(':id_endereco',$logradouro->getId_endereco()); 
 		$consulta->bindValue(':cep',$logradouro->getCep()); 
 		$consulta->bindValue(':endereco',$logradouro->getEndereco()); 
-		$consulta->bindValue(':ponto de referencia',$logradouro->getPonto de referencia()); 
+		$consulta->bindValue(':ponto_de_referencia',$logradouro->getPonto_de_referencia()); 
 		$consulta->bindValue(':numero',$logradouro->getNumero()); 
 		$consulta->bindValue(':complemento',$logradouro->getComplemento()); 
 		$consulta->bindValue(':bairro',$logradouro->getBairro()); 
