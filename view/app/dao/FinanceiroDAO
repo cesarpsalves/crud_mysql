@@ -1,0 +1,91 @@
+<?php
+    
+    /**
+     * preference_id    produto preco   payment_status  data_pagamento  vencimento  id_usuario  id_financeiro
+     */
+    class FinanceiroDAO
+    {        
+    
+    public function create(Financeiro $financeiro) {
+        try {
+            $sql = "INSERT INTO a_financeiro (
+            produto,preco,payment_status,data_pagamento,vencimento,id_usuario
+        ) VALUES (
+        :produto,:preco,:payment_status,:data_pagamento,:vencimento,LAST_INSERT_ID()
+        )";
+
+            $p_sql = Conexao::getConexao()->prepare($sql);
+            $p_sql->bindValue(":produto", $financeiro->getProduto());
+            $p_sql->bindValue(":preco", $financeiro->getPreco());
+            $p_sql->bindValue(":payment_status", $financeiro->getPayment_status());
+            $p_sql->bindValue(":data_pagamento", $financeiro->getData_pagamento());
+            $p_sql->bindValue(":vencimento", $financeiro->getVencimento());
+
+
+                        
+            return $p_sql->execute();
+        } catch (Exception $e) {
+            print "Erro ao Inserir Financeiro <br>" . $e . '<br>';
+        }
+    }
+
+    public function read() {
+        try {
+            $sql = "SELECT * FROM a_financeiro order by id_usuario asc";
+            $result = Conexao::getConexao()->query($sql);
+            $lista = $result->fetchAll(PDO::FETCH_ASSOC);
+            $f_lista = array();
+            foreach ($lista as $l) {
+                $f_lista[] = $this->listaFinanceiro($l);
+            }
+            return $f_lista;
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar Buscar Todos." . $e;
+        }
+    }
+     
+    public function update(Financeiro $financeiro) {
+        try {
+            $sql = "UPDATE a_telefone set
+                
+                  fixo=:fixo,
+                  celular=:celular          
+                                                                       
+                  WHERE id_usuario = :id";
+            $p_sql = Conexao::getConexao()->prepare($sql);
+            $p_sql->bindValue(':produto', $produto->getProduto());
+            $p_sql->bindValue(':preco', $preco->getpreco());
+            $p_sql->bindValue(':payment_status', $payment_status->getPayment_status());
+            $p_sql->bindValue(':vencimento', $vencimento->getVencimento());
+
+            return $p_sql->execute();
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar fazer Update<br> $e <br>";
+        }
+    }
+
+    public function delete(Financeiro $financeiro) {
+        try {
+            $sql = "DELETE FROM a_telefone WHERE id_usuario = :id";
+            $p_sql = Conexao::getConexao()->prepare($sql);
+            $p_sql->bindValue(":id", $financeiro->getId_usuario());
+            return $p_sql->execute();
+        } catch (Exception $e) {
+            echo "Erro ao Excluir Financeiro<br> $e <br>";
+        }
+    }
+    
+
+    private function listaFinanceiros($row) {
+        $usuario = new Financeiro();
+        $usuario->setId_usuario($row['id_usuario']);
+        $usuario->setProduto($row['produto']);
+        $usuario->setPreco($row['preco']);
+        $usuario->setPayment_status($row['payment_status']);
+         $usuario->setVencimento($row['vencimento']);
+
+        return $telefone;
+    }
+ }
+
+ ?>
