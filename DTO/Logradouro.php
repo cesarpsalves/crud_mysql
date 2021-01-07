@@ -65,8 +65,8 @@
 		public function setEndereco($endereco){
 			$this->endereco=$endereco;
 		}
-		public function setPonto de referencia($ponto de referencia){
-			$this->ponto de referencia=$ponto de referencia;
+		public function setPonto_de_referencia($ponto_de_referencia){
+			$this->ponto_de_referencia=$ponto_de_referencia;
 		}
 		public function setNumero($numero){
 			$this->numero=$numero;

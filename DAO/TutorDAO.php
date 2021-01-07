@@ -7,7 +7,7 @@ class TutorDAO{
 
 	//Carrega um elemento pela chave primária
 	public function carregar($id_responsavel){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'SELECT * FROM tutor WHERE id_responsavel = :id_responsavel';
 		$consulta = $conexao->prepare($sql);
 		$consulta->bindValue(":id_responsavel",$id_responsavel);
@@ -17,7 +17,7 @@ class TutorDAO{
 
 	//Lista todos os elementos da tabela
 	public function listarTodos(){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'SELECT * FROM tutor';
 		$consulta = $conexao->prepare($sql);
 		$consulta->execute();
@@ -26,7 +26,7 @@ class TutorDAO{
 	
 	//Lista todos os elementos da tabela listando ordenados por uma coluna específica
 	public function listarTodosOrgenandoPor($coluna){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'SELECT * FROM tutor ORDER BY '.$coluna;
 		$consulta = $conexao->prepare($sql);
 		$consulta->execute();
@@ -35,7 +35,7 @@ class TutorDAO{
 	
 	//Apaga um elemento da tabela
 	public function deletar($id_responsavel){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'DELETE FROM tutor WHERE id_responsavel = :id_responsavel';
 		$consulta = $conexao->prepare($sql);
 		$consulta->bindValue(":id_responsavel",$id_responsavel);
@@ -44,10 +44,25 @@ class TutorDAO{
 		else
 			return false;
 	}
+
+	//Insere um elemento na tabela pela primeira vez, pelo form cadastrar_alunos
+	public function cadastrar($tutor){
+		include("../conexao/conexao.php");
+		$sql = 'INSERT INTO tutor (responsavel, data_cadastro, data_alteracao, id_usuario) VALUES (:responsavel, :data_cadastro, :data_alteracao, :id_usuario)';
+		$consulta = $conexao->prepare($sql);
+		$consulta->bindValue(':responsavel',$tutor->getResponsavel()); 
+		$consulta->bindValue(':data_cadastro',$tutor->getData_cadastro()); 
+		$consulta->bindValue(':data_alteracao',$tutor->getData_alteracao()); 
+		$consulta->bindValue(':id_usuario',LAST_INSERT_ID()); 
+		if($consulta->execute())
+			return true;
+		else
+			return false;
+	}
 	
 	//Insere um elemento na tabela
 	public function inserir($tutor){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'INSERT INTO tutor (id_responsavel, responsavel, data_cadastro, data_alteracao, id_usuario) VALUES (:id_responsavel, :responsavel, :data_cadastro, :data_alteracao, :id_usuario)';
 		$consulta = $conexao->prepare($sql);
 		$consulta->bindValue(':id_responsavel',$tutor->getId_responsavel()); 
@@ -63,7 +78,7 @@ class TutorDAO{
 	
 	//Atualiza um elemento na tabela
 	public function atualizar($tutor){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'UPDATE tutor SET id_responsavel = :id_responsavel, responsavel = :responsavel, data_cadastro = :data_cadastro, data_alteracao = :data_alteracao, id_usuario = :id_usuario WHERE id_responsavel = :id_responsavel';
 		$consulta = $conexao->prepare($sql);
 		$consulta->bindValue(':id_responsavel',$tutor->getId_responsavel()); 
@@ -79,7 +94,7 @@ class TutorDAO{
 
 	//Apaga todos os elementos da tabela
 	public function limparTabela(){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'DELETE FROM tutor';
 		$consulta = $conexao->prepare($sql);
 		if($consulta->execute())

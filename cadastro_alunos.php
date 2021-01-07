@@ -1,13 +1,4 @@
-<?php
-include_once "./app/conexao/Conexao.php";
-include_once "./app/dao/UsuarioDAO.php";
-include_once "./app/model/Usuario.php";
 
-//instancia as classes
-$usuario = new Usuario();
-$usuariodao = new UsuarioDAO();
-
-?>
 
 
     <!DOCTYPE html>
@@ -47,7 +38,7 @@ $usuariodao = new UsuarioDAO();
                  <span aria-hidden="true">&times;</span>
              </button>
          </div>
-         <form enctype="multipart/form-data" method="post" action="app/controller/UsuarioController.php" id="meuFrm">
+         <form enctype="multipart/form-data" method="post" action="controller/AlunoController.php" id="meuFrm">
              <div class="accordion" id="dados_usuario">
                  <div class="card">
                      <div class="card-header" id="headingZero">
@@ -311,7 +302,7 @@ $usuariodao = new UsuarioDAO();
         <script src="js/validaemail.js"></script>
         <script src="js/mascaratroco.js"></script>
 
-        <!-- Enviar Form sem Reflesh Paulo -->
+        <!-- Enviar Form sem Reflesh Paulo 
         <script src="js/jquery.form.js"></script>
         <script type="text/javascript">
             $( document ).ready(function() {
@@ -336,7 +327,7 @@ $usuariodao = new UsuarioDAO();
 
             });
         </script>
-
+-->
     </body>
 
     </html>

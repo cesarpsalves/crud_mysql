@@ -47,11 +47,9 @@ class UsuarioDAO{
 	
 	//Insere um elemento na tabela
 	public function inserir($usuario){
-		include("conexao.php");
-		$sql = 'INSERT INTO usuario (id_usuario, user, email, senha, foto, tipo, nome, sobrenome, sexo, data_nascimento, identidade, tipoidentidade, cpf, nivel_usuario, status, ultimo_login, user_altera, data_alteracao, data_cadastro) VALUES (:id_usuario, :user, :email, :senha, :foto, :tipo, :nome, :sobrenome, :sexo, :data_nascimento, :identidade, :tipoidentidade, :cpf, :nivel_usuario, :status, :ultimo_login, :user_altera, :data_alteracao, :data_cadastro)';
+		include("../conexao/conexao.php");
+		$sql = 'INSERT INTO usuario (email, senha, foto, tipo, nome, sobrenome, sexo, data_nascimento, identidade, tipoidentidade, cpf, nivel_usuario, status) VALUES (:email, :senha, :foto, :tipo, :nome, :sobrenome, :sexo, :data_nascimento, :identidade, :tipoidentidade, :cpf, :nivel_usuario, :status)';
 		$consulta = $conexao->prepare($sql);
-		$consulta->bindValue(':id_usuario',$usuario->getId_usuario()); 
-		$consulta->bindValue(':user',$usuario->getUser()); 
 		$consulta->bindValue(':email',$usuario->getEmail()); 
 		$consulta->bindValue(':senha',$usuario->getSenha()); 
 		$consulta->bindValue(':foto',$usuario->getFoto()); 
@@ -64,11 +62,7 @@ class UsuarioDAO{
 		$consulta->bindValue(':tipoidentidade',$usuario->getTipoidentidade()); 
 		$consulta->bindValue(':cpf',$usuario->getCpf()); 
 		$consulta->bindValue(':nivel_usuario',$usuario->getNivel_usuario()); 
-		$consulta->bindValue(':status',$usuario->getStatus()); 
-		$consulta->bindValue(':ultimo_login',$usuario->getUltimo_login()); 
-		$consulta->bindValue(':user_altera',$usuario->getUser_altera()); 
-		$consulta->bindValue(':data_alteracao',$usuario->getData_alteracao()); 
-		$consulta->bindValue(':data_cadastro',$usuario->getData_cadastro()); 
+		$consulta->bindValue(':status',$usuario->getStatus());
 		if($consulta->execute())
 			return true;
 		else
@@ -77,7 +71,7 @@ class UsuarioDAO{
 	
 	//Atualiza um elemento na tabela
 	public function atualizar($usuario){
-		include("conexao.php");
+		include("../conexao/conexao.php");
 		$sql = 'UPDATE usuario SET id_usuario = :id_usuario, user = :user, email = :email, senha = :senha, foto = :foto, tipo = :tipo, nome = :nome, sobrenome = :sobrenome, sexo = :sexo, data_nascimento = :data_nascimento, identidade = :identidade, tipoidentidade = :tipoidentidade, cpf = :cpf, nivel_usuario = :nivel_usuario, status = :status, ultimo_login = :ultimo_login, user_altera = :user_altera, data_alteracao = :data_alteracao, data_cadastro = :data_cadastro WHERE id_usuario = :id_usuario';
 		$consulta = $conexao->prepare($sql);
 		$consulta->bindValue(':id_usuario',$usuario->getId_usuario()); 
