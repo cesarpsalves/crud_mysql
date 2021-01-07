@@ -26,40 +26,67 @@ $logradouro = new Logradouro();
 $logradourodao = new LogradouroDAO();
 $financeiro = new Financeiro();
 $financeirodao = new FinanceiroDAO();
-//pega todos os dados passado por POST
 
-$d = filter_input_array(INPUT_POST);
+//pega todos os dados passado por POST e SANITIZA
+
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+    $senha = md5(filter_input(INPUT_POST, 'senha'));
+    $nome =  filter_input(INPUT_POST, 'nome');
+    $sobrenome =  filter_input(INPUT_POST, 'sobrenome');
+    $sexo =  filter_input(INPUT_POST, 'sexo');
+    $data_nascimento =  filter_input(INPUT_POST, 'data_nascimento');
+    $identidade =  filter_input(INPUT_POST, 'identidade');
+    $tipoidentidade =  filter_input(INPUT_POST, 'tipoidentidade');
+    $cpf =  filter_input(INPUT_POST, 'cpf');
+    $responsavel =  filter_input(INPUT_POST, 'responsavel');
+    $fixo =  filter_input(INPUT_POST, 'fixo');
+    $celular =  filter_input(INPUT_POST, 'celular');
+    $reg_data_pagamento =  filter_input(INPUT_POST, 'reg_data_pagamento');
+    $situacao =  filter_input(INPUT_POST, 'situacao');
+    $cep =  filter_input(INPUT_POST, 'cep');
+    $endereco =  filter_input(INPUT_POST, 'endereco');
+    $ponto_de_referencia =  filter_input(INPUT_POST, 'ponto_de_referencia');
+    $numero =  filter_input(INPUT_POST, 'numero');
+    $complemento =  filter_input(INPUT_POST, 'complemento');
+    $bairro =  filter_input(INPUT_POST, 'bairro');
+    $cidade =  filter_input(INPUT_POST, 'cidade');
+    $estado =  filter_input(INPUT_POST, 'estado');
+    $produto =  filter_input(INPUT_POST, 'produto');
+    $preco =  filter_input(INPUT_POST, 'preco');
+    $payment_status =  filter_input(INPUT_POST, 'payment_status');
+    $data_pagamento =  filter_input(INPUT_POST, 'data_pagamento');
+    $vencimento =  filter_input(INPUT_POST, 'vencimento');
 
 //se a operação for gravar entra nessa condição
 if(isset($_POST['cadastrar'])){
 
-    $usuario->setEmail($d['email']);
-    $usuario->setSenha($d['senha']);
-    $usuario->setNome($d['nome']);
-    $usuario->setSobrenome($d['sobrenome']);
-    $usuario->setSexo($d['sexo']);
-    $usuario->setData_nascimento($d['data_nascimento']);
-    $usuario->setIdentidade($d['identidade']);
-    $usuario->setTipoidentidade($d['tipoidentidade']);
-    $usuario->setCpf($d['cpf']);
-    $tutor->setResponsavel($d['responsavel']);
-    $telefone->setFixo($d['fixo']);
-    $telefone->setCelular($d['celular']);
-    $pagamento->setReg_data_pagamento($d['reg_data_pagamento']);
-    $pagamento->setSituacao($d['situacao']);
-    $logradouro->setCep($d['cep']);
-    $logradouro->setEndereco($d['endereco']);
-    $logradouro->setPonto_de_referencia($d['ponto_de_referencia']);
-    $logradouro->setNumero($d['numero']);
-    $logradouro->setComplemento($d['complemento']);
-    $logradouro->setBairro($d['bairro']);
-    $logradouro->setCidade($d['cidade']);
-    $logradouro->setEstado($d['estado']);
-    $financeiro->setProduto($d['produto']);
-    $financeiro->setPreco($d['preco']);
-    $financeiro->setPayment_status($d['payment_status']);
-    $financeiro->setData_pagamento($d['data_pagamento']);
-    $financeiro->setVencimento($d['vencimento']);
+    $usuario->setEmail($email);
+    $usuario->setSenha($senha);
+    $usuario->setNome($nome);
+    $usuario->setSobrenome($sobrenome);
+    $usuario->setSexo($sexo);
+    $usuario->setData_nascimento($data_nascimento);
+    $usuario->setIdentidade($identidade);
+    $usuario->setTipoidentidade($tipoidentidade);
+    $usuario->setCpf($cpf);
+    $tutor->setResponsavel($responsavel);
+    $telefone->setFixo($fixo);
+    $telefone->setCelular($celular);
+    $pagamento->setReg_data_pagamento($reg_data_pagamento);
+    $pagamento->setSituacao($situacao);
+    $logradouro->setCep($cep);
+    $logradouro->setEndereco($endereco);
+    $logradouro->setPonto_de_referencia($ponto_de_referencia);
+    $logradouro->setNumero($numero);
+    $logradouro->setComplemento($complemento);
+    $logradouro->setBairro($bairro);
+    $logradouro->setCidade($cidade);
+    $logradouro->setEstado($estado);
+    $financeiro->setProduto($produto);
+    $financeiro->setPreco($preco);
+    $financeiro->setPayment_status($payment_status);
+    $financeiro->setData_pagamento($data_pagamento);
+    $financeiro->setVencimento($vencimento);
 
 
 
@@ -78,33 +105,33 @@ if(isset($_POST['cadastrar'])){
 // se a requisição for editar
 else if(isset($_POST['editar'])){
 
-    $usuario->setEmail($d['email']);
-    $usuario->setSenha($d['senha']);
-    $usuario->setNome($d['nome']);
-    $usuario->setSobrenome($d['sobrenome']);
-    $usuario->setSexo($d['sexo']);
-    $usuario->setData_nascimento($d['data_nascimento']);
-    $usuario->setIdentidade($d['identidade']);
-    $usuario->setTipoidentidade($d['tipoidentidade']);
-    $usuario->setCpf($d['cpf']);
-    $tutor->setResponsavel($d['responsavel']);
-    $telefone->setFixo($d['fixo']);
-    $telefone->setCelular($d['celular']);
-    $pagamento->setReg_data_pagamento($d['reg_data_pagamento']);
-    $pagamento->setSituacao($d['situacao']);
-    $logradouro->setCep($d['cep']);
-    $logradouro->setEndereco($d['endereco']);
-    $logradouro->setPonto_de_referencia($d['ponto_de_referencia']);
-    $logradouro->setNumero($d['numero']);
-    $logradouro->setComplemento($d['complemento']);
-    $logradouro->setBairro($d['bairro']);
-    $logradouro->setCidade($d['cidade']);
-    $logradouro->setEstado($d['estado']);
-    $financeiro->setProduto($d['produto']);
-    $financeiro->setPreco($d['preco']);
-    $financeiro->setPayment_status($d['payment_status']);
-    $financeiro->setData_pagamento($d['data_pagamento']);
-    $financeiro->setVencimento($d['vencimento']);
+    $usuario->setEmail($email);
+    $usuario->setSenha($senha);
+    $usuario->setNome($nome);
+    $usuario->setSobrenome($sobrenome);
+    $usuario->setSexo($sexo);
+    $usuario->setData_nascimento($data_nascimento);
+    $usuario->setIdentidade($identidade);
+    $usuario->setTipoidentidade($tipoidentidade);
+    $usuario->setCpf($cpf);
+    $tutor->setResponsavel($responsavel);
+    $telefone->setFixo($fixo);
+    $telefone->setCelular($celular);
+    $pagamento->setReg_data_pagamento($reg_data_pagamento);
+    $pagamento->setSituacao($situacao);
+    $logradouro->setCep($cep);
+    $logradouro->setEndereco($endereco);
+    $logradouro->setPonto_de_referencia($ponto_de_referencia);
+    $logradouro->setNumero($numero);
+    $logradouro->setComplemento($complemento);
+    $logradouro->setBairro($bairro);
+    $logradouro->setCidade($cidade);
+    $logradouro->setEstado($estado);
+    $financeiro->setProduto($produto);
+    $financeiro->setPreco($preco);
+    $financeiro->setPayment_status($payment_status);
+    $financeiro->setData_pagamento($data_pagamento);
+    $financeiro->setVencimento($vencimento);
 
     $usuariodao->update($usuario);
     $tutordao->update($tutor);

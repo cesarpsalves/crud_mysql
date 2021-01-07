@@ -208,7 +208,7 @@
                              </div>
                              <div class="form-group">
                                  <label for="pontoreferencia">Ponto de Referência</label>
-                                 <input name="pontoreferencia" type="text" class="form-control" id="pontoreferencia" aria-describedby="pontoreferencia" placeholder="Digitar Ponto de Referência" autocomplete="off">
+                                 <input name="ponto_de_referencia" type="text" class="form-control" id="ponto_de_referencia" aria-describedby="pontoreferencia" placeholder="Digitar Ponto de Referência" autocomplete="off">
                              </div>
                              <div class="form-group">
                                  <label for="bairro">Bairro</label>
