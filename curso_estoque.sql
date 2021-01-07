@@ -127,7 +127,7 @@ CREATE TABLE `logradouro` (
   `id_endereco` int(11) NOT NULL,
   `cep` int(11) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL,
-  `ponto de referencia` varchar(255) DEFAULT NULL,
+  `ponto_de_referencia` varchar(255) DEFAULT NULL,
   `numero` int(100) DEFAULT NULL,
   `complemento` varchar(255) DEFAULT NULL,
   `bairro` varchar(255) DEFAULT NULL,
